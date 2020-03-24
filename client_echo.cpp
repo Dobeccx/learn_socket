@@ -1,6 +1,6 @@
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <apra/inet.h>
+#include <arpa/inet.h>
 #include <iostream>
 #include <string.h>
 #include <unistd.h>
@@ -18,7 +18,7 @@ int main(int argc,char* argv[])
     server_socket_addr.sin_family = AF_INET;
     server_socket_addr.sin_addr.s_addr =inet_addr("127.0.0.1");
     server_socket_addr.sin_port = htons(3000);
-    if(connect(client_fd,(struct sockaddr*)&server_socket_addr),sizeof(server_socket_addr)==-1)
+    if(connect(client_fd,(struct sockaddr*)&server_socket_addr,sizeof(server_socket_addr))==-1)
     {
         std::cout << "connect socket error." << std::endl;
         return -1;
@@ -28,23 +28,23 @@ int main(int argc,char* argv[])
     if(ret>0)
     {
         std::cout << "recv data successfully, data: " << recv_buf << std::endl;
-	} 
-	else 
-	{
-		std::cout << "recv data error, data: " << recv_buf << std::endl;
-	}
+    } 
+    else 
+    {
+	std::cout << "recv data error, data: " << recv_buf << std::endl;
+    }
     char send_data[64] = {0};
     while(true)
     {
         memset(send_data,0,sizeof(send_data));
         std::cin>>send_data;
         ret = send(client_fd,send_data,strlen(send_data),0);
-        if (ret != strlen(SEND_DATA))
-	    {
+        if (ret != strlen(send_data))
+	{
             std::cout << "send data error." << std::endl;
             return -1;
-	    }
-        rect = recv(client_fd,recv_buf,sizeof(recv_buf),0);
+	}
+        ret = recv(client_fd,recv_buf,sizeof(recv_buf),0);
         if(ret>0)
         {
             std::cout << "recv data successfully, data: " << recv_buf << std::endl;
