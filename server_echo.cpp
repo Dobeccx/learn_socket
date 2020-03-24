@@ -52,7 +52,7 @@ int main(int argc,char* argvp[])
     while(true)
     {
         std::cout<<"sizeof(recv_buf):"<<sizeof(recv_buf)<<std::endl;
-        memset(recv_buf,0,sizeof(recv_buf));
+        memset(recv_buf,0,32);
         ret = recv(client_fd,recv_buf,32,0);
         if(ret>0)
         {
