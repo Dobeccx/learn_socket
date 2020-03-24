@@ -43,8 +43,8 @@ int main(int argc,char* argvp[])
         return -1;
     }
     char recv_buf[32] = "hello message from server ";
-    int ret = send(client_fd, recv_buf, strlen(recv_buf), 0);
-    if (ret != strlen(recv_buf))
+    int ret = send(client_fd, recv_buf, sizeof(recv_buf), 0);
+    if (ret != sizeof(recv_buf))
     {
 		std::cout << "send data error." << std::endl;		
 	} 
@@ -52,7 +52,7 @@ int main(int argc,char* argvp[])
     while(true)
     {
         std::cout<<"sizeof(recv_buf):"<<sizeof(recv_buf)<<std::endl;
-        memset(recv_buf,0,sizeof(recv_buf)-1);
+        memset(recv_buf,0,sizeof(recv_buf));
         ret = recv(client_fd,recv_buf,32,0);
         if(ret>0)
         {
@@ -62,8 +62,8 @@ int main(int argc,char* argvp[])
 	    {
 	        std::cout << "recv data error." << std::endl;
         }
-        ret = send(client_fd, recv_buf, strlen(recv_buf), 0);
-        if (ret != strlen(recv_buf))
+        ret = send(client_fd, recv_buf, sizeof(recv_buf), 0);
+        if (ret != sizeof(recv_buf))
         {
 	    	std::cout << "send data error." << std::endl;		
 	    } 
