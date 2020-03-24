@@ -62,7 +62,7 @@ int main(int argc,char* argvp[])
 	    {
 	        std::cout << "recv data error." << std::endl;
         }
-        ret = send(client_fd, recv_buf, sizeof(recv_buf), 0);
+        ret = send(client_fd, recv_buf, strlen(recv_buf), 0);
         if (ret != strlen(recv_buf))
         {
 	    	std::cout << "send data error." << std::endl;		
