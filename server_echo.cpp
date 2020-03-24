@@ -56,8 +56,6 @@ int main(int argc,char* argvp[])
         ret = recv(client_fd,recv_buf,32,0);
         if(ret>0)
         {
-            if(strcmp(recv_buf,"-1")==0)
-                break;
             std::cout<<"recv data from client, data:"<<recv_buf<<std::endl;
         }
         else 
@@ -70,6 +68,8 @@ int main(int argc,char* argvp[])
 	    	std::cout << "send data error." << std::endl;		
 	        std::cout << "send data to client successfully, data: " << recv_buf << std::endl;
 	    } 
+        if(strcmp(recv_buf,"-1")==0)
+            break;
     }
     close(listen_fd);
     return 0;
