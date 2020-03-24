@@ -1,6 +1,6 @@
 release_filepath=release
-server_release_filename=server
-client_release_filename=client
+server_release_filename=server.out
+client_release_filename=client.out
 
 $(server_release_filename):server*.cpp
 	g++ -o $(release_filepath)/$(server_release_filename) server*.cpp 
