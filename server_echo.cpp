@@ -9,7 +9,7 @@
 int main(int argc,char* argvp[])
 {
     size_t listen_fd = socket(AF_INET,SOCK_STREAM,0);
-    if(listent_fd == -1)
+    if(listen_fd == -1)
     {
         std::cout<<"create listen socket error."<<std::endl;
         return -1;
@@ -36,21 +36,21 @@ int main(int argc,char* argvp[])
     }
     struct sockaddr_in client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
-    size_t client_fd = accpet(listen_fd,(struct sockaddr *)&client_addr,client_addr_len);
+    size_t client_fd = accept(listen_fd,(struct sockaddr *)&client_addr,&client_addr_len);
     if(client_fd == -1)
     {
         std::cout<<"create client socket error."<<std::endl;
         return -1;
     }
     char recv_buf[32] = "hello message from server ";
-    int ret = send(clientfd, recvBuf, strlen(recvBuf), 0);
-	if (ret != strlen(recvBuf))
+    int ret = send(client_fd, recv_buf, strlen(recv_buf), 0);
+    if (ret != strlen(recv_buf))
     {
 		std::cout << "send data error." << std::endl;		
-	    std::cout << "send data to client successfully, data: " << recvBuf << std::endl;
+	    std::cout << "send data to client successfully, data: " << recv_buf << std::endl;
 	} 
 
-    while（true)
+    while(true)
     {
         memset(recv_buf,0,sizeof(recv_buf));
         ret = recv(client_fd,recv_buf,32,0);
