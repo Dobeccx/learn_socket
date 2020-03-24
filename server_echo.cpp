@@ -52,7 +52,7 @@ int main(int argc,char* argvp[])
 
     while(true)
     {
-        memset(recv_buf,0,sizeof(recv_buf));
+        memset(recv_buf,0,32);
         ret = recv(client_fd,recv_buf,32,0);
         if(ret>0)
         {
@@ -62,7 +62,7 @@ int main(int argc,char* argvp[])
 	    {
 	        std::cout << "recv data error." << std::endl;
         }
-        ret = send(client_fd, recv_buf, strlen(recv_buf), 0);
+        ret = send(client_fd, recv_buf, sizeof(recv_buf), 0);
         if (ret != strlen(recv_buf))
         {
 	    	std::cout << "send data error." << std::endl;		
