@@ -47,12 +47,12 @@ int main(int argc,char* argvp[])
     if (ret != strlen(recv_buf))
     {
 		std::cout << "send data error." << std::endl;		
-	    std::cout << "send data to client successfully, data: " << recv_buf << std::endl;
 	} 
 
     while(true)
     {
-        memset(recv_buf,0,32);
+        std::cout<<"sizeof(recv_buf):"<<sizeof(recv_buf)<<std::endl;
+        memset(recv_buf,0,sizeof(recv_buf));
         ret = recv(client_fd,recv_buf,32,0);
         if(ret>0)
         {
@@ -66,7 +66,6 @@ int main(int argc,char* argvp[])
         if (ret != strlen(recv_buf))
         {
 	    	std::cout << "send data error." << std::endl;		
-	        std::cout << "send data to client successfully, data: " << recv_buf << std::endl;
 	    } 
         if(strcmp(recv_buf,"-1")==0)
             break;

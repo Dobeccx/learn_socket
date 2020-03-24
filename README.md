@@ -17,5 +17,13 @@ TODO
 
 ​	1.string.h 和string有什么不同？
 
+> <string.h>是旧的C 头文件，对应的是基于char*的字符串处理函数；<string>是包装了std 的C++头文件，对应的是新的string 类（看下文）；
+> <cstring>是对应于旧C 头文件的std 版本。（包含std）
+>
+> <string>是c++ 的头文件，其内包含了一个`string`类，`string s1`就是建立一个`string`类的对象 
+> <string.h> 的c语言的东西 并无类，所以不能 `string s1 `
+>
+> <cstring>文件实际上只是在一个命名空间std中`include`了 <string.h>
+
 ​	2.memset清空字符数组时为什么sizeof函数不起作用，会导致数组滞留上次收到的消	息？
 
